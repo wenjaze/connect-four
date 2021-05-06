@@ -6,13 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Inject;
 
 @Slf4j
-public class GameController {
+public class StartUpController {
 
     @Inject
     FXMLLoader fxmlLoader;
-
-    void switchToScoreboard() {
-        fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard.fxml"));
-    }
 
 }
