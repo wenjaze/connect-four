@@ -11,8 +11,4 @@ public class GameController {
     @Inject
     FXMLLoader fxmlLoader;
 
-    void switchToScoreboard() {
-        fxmlLoader.setLocation(getClass().getResource("/fxml/scoreboard.fxml"));
-    }
-
 }
