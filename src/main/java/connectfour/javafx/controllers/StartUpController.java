@@ -21,7 +21,6 @@ public class StartUpController {
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
         log.info("Switching to GameScene...");
         swapToGameScene(actionEvent);
-
     }
 
     private void swapToGameScene(ActionEvent actionEvent) throws IOException {
