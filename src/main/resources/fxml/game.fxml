@@ -4,7 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="gridPane" alignment="CENTER" hgap="10.0"
-          stylesheets="@game_scene_ui.css"
+          stylesheets="@ui.css"
           maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
           prefWidth="600.0" snapToPixel="false" vgap="10.0" xmlns="http://javafx.com/javafx/16"
           fx:controller="connectfour.javafx.controllers.GameController">

@@ -4,33 +4,45 @@ import connectfour.models.BoardModel;
 import connectfour.models.Cell;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
+import java.io.IOException;
 
 @Slf4j
 public class GameController {
 
+    @Inject
+    FXMLLoader fxmlLoader = new FXMLLoader();
+    private String playerName1;
+
     private BoardModel board = new BoardModel();
+
     @FXML
     private GridPane gridPane;
 
     private Cell currentPlayer = Cell.EMPTY;
-
-    @Inject
-    FXMLLoader fxmlLoader;
-
+    private String playerName2;
 
     @FXML
     private void initialize() {
         drawNewGameState();
         currentPlayer = Cell.RED;
+    }
+
+    public void setPlayerNames(String playerName1, String playerName2) {
+        this.playerName1 = playerName1;
+        this.playerName2 = playerName2;
     }
 
     private void drawNewGameState() {
@@ -50,7 +62,13 @@ public class GameController {
         StackPane cell = new StackPane();
         cell.getStyleClass().add("cell");
         cell.getChildren().add(createCircle(cellColor));
-        cell.setOnMouseClicked(this::handleMouseClick);
+        cell.setOnMouseClicked(event -> {
+            try {
+                handleMouseClick(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         return cell;
     }
@@ -73,6 +91,14 @@ public class GameController {
         };
     }
 
+    private String getWinnerFromColor() {
+        return switch (currentPlayer) {
+            case BLUE -> playerName2;
+            case RED -> playerName1;
+            case EMPTY -> throw new NullPointerException("currentPlayer cannot be empty!");
+        };
+    }
+
     private void placeColoredCircle(int col) {
         int row = board.getPlacementLocation(col, currentPlayer);
         board.setCell(row, col, currentPlayer);
@@ -82,12 +108,12 @@ public class GameController {
     }
 
     @FXML
-    private void handleMouseClick(MouseEvent event) {
+    private void handleMouseClick(MouseEvent event) throws IOException {
         int col = getColFromMousePos(event);
         if (!board.isColFull(col)) {
             placeColoredCircle(col);
             if (board.isWinning(currentPlayer)) {
-                doIfPlayerWon(currentPlayer);
+                doIfPlayerWon(currentPlayer, event);
             }
             switchPlayer();
         } else {
@@ -95,8 +121,8 @@ public class GameController {
         }
     }
 
-    private void doIfPlayerWon(Cell winner) {
-        log.trace("Congratulations!" + winner + " has won the game!");
+    private void doIfPlayerWon(Cell winner, MouseEvent mouseEvent) throws IOException {
+        swapEndOfGameScene(mouseEvent);
         board = new BoardModel();
         drawNewGameState();
     }
@@ -112,5 +138,15 @@ public class GameController {
         alert.setContentText(alertMessage);
         alert.showAndWait();
         log.trace(alertMessage);
+    }
+
+    private void swapEndOfGameScene(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/endofgame.fxml"));
+        Parent root = fxmlLoader.load();
+        fxmlLoader.<EndOfGameController>getController().setEndOfGameMessage(currentPlayer.toString(), getWinnerFromColor());
+        Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+        log.trace("Finished game, loading Top Ten scene.");
     }
 }
