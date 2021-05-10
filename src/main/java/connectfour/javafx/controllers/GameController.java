@@ -29,32 +29,39 @@ public class GameController {
 
     @FXML
     private void initialize() {
-        for (int i = 0; i < board.getRowNum(); i++) {
-            for (int j = 0; j < board.getColNum(); j++) {
-                StackPane cell = addCell(currentPlayer);
-                gridPane.add(cell, j, i);
-            }
-        }
+        drawNewGameState();
         currentPlayer = Cell.RED;
     }
 
-    // TODO : implement ui.css
+    private void drawNewGameState() {
+        log.trace("Resetting board...");
+        gridPane.getChildren().clear();
+        for (int i = 0; i < board.getColNum(); i++) {
+            for (int j = 0; j < board.getRowNum(); j++) {
+                StackPane cell = addCell(board.getCellFill(i, j));
+                gridPane.add(cell, i, j);
+                //log.trace("Setting cell state to : "+board.getCellFill(i,j).toString());
+            }
+        }
+    }
 
     private StackPane addCell(Cell cellColor) {
+        StackPane cell = new StackPane();
+        cell.getStyleClass().add("cell");
+        cell.getChildren().add(createCircle(cellColor));
+        cell.setOnMouseClicked(this::handleMouseClick);
 
+        return cell;
+    }
+
+    private Circle createCircle(Cell cellColor) {
         Circle circle = new Circle(board.getCellSize());
         circle.setFill(switch (cellColor) {
             case EMPTY -> Color.TRANSPARENT;
             case RED -> Color.RED;
             case BLUE -> Color.BLUE;
         });
-
-        StackPane cell = new StackPane();
-        //cell.getStyleClass().add("cell");
-        cell.getChildren().add(circle);
-        cell.setOnMouseClicked(this::handleMouseClick);
-
-        return cell;
+        return circle;
     }
 
     private void switchPlayer() {
@@ -65,22 +72,32 @@ public class GameController {
         };
     }
 
+    private void placeColoredCircle(int col) {
+        int row = board.getPlacementLocation(col, currentPlayer);
+        board.setCell(row, col, currentPlayer);
+        StackPane cell = addCell(currentPlayer);
+        gridPane.add(cell, col, row);
+        log.trace(currentPlayer + " circle placed at : (" + row + " - " + col + ")");
+    }
+
     @FXML
     private void handleMouseClick(MouseEvent event) {
         int col = getColFromMousePos(event);
         if (!board.isColFull(col)) {
-            int row = board.putCircle(col, currentPlayer);
-            board.setCell(row, col, currentPlayer);
-            StackPane cell = addCell(currentPlayer);
-            log.trace(currentPlayer + " circle placed at : (" + row + " - " + col + ")");
-            gridPane.add(cell, col, row);
-            log.trace("win ? " + board.areFourConnected(currentPlayer));
+            placeColoredCircle(col);
+            if (board.isWinning(currentPlayer)) {
+                doIfPlayerWon(currentPlayer);
+            }
             switchPlayer();
         } else {
             showAlert("Can't place circle", "Column " + (col + 1) + " is full.", Alert.AlertType.INFORMATION);
         }
     }
 
+    private void doIfPlayerWon(Cell winner) {
+        log.trace("Congratulations!" + winner + " has won the game!");
+        drawNewGameState();
+    }
 
     private int getColFromMousePos(MouseEvent event) {
         StackPane square = (StackPane) event.getSource();
