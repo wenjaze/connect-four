@@ -16,7 +16,6 @@ public class ScoreBoardController {
 
     void handleBackToGameButton(ActionEvent actionEvent) throws IOException {
         log.info("Switching back to game scene...");
-
     }
 
 }
