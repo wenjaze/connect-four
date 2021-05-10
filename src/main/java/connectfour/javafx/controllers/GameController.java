@@ -17,7 +17,7 @@ import javax.inject.Inject;
 @Slf4j
 public class GameController {
 
-    private final BoardModel board = new BoardModel();
+    private BoardModel board = new BoardModel();
     @FXML
     private GridPane gridPane;
 
@@ -36,6 +36,7 @@ public class GameController {
     private void drawNewGameState() {
         log.trace("Resetting board...");
         gridPane.getChildren().clear();
+        log.trace("Done clearing..");
         for (int i = 0; i < board.getColNum(); i++) {
             for (int j = 0; j < board.getRowNum(); j++) {
                 StackPane cell = addCell(board.getCellFill(i, j));
@@ -96,6 +97,7 @@ public class GameController {
 
     private void doIfPlayerWon(Cell winner) {
         log.trace("Congratulations!" + winner + " has won the game!");
+        board = new BoardModel();
         drawNewGameState();
     }
 

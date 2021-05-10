@@ -1,6 +1,6 @@
 package connectfour.javafx.controllers;
 
-import connectfour.javafx.utils.SceneSwitcher;
+import connectfour.javafx.utils.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,7 +24,7 @@ public class StartUpController {
     }
 
     private void swapToGameScene(ActionEvent actionEvent) throws IOException {
-        fxmlLoader.setLocation(SceneSwitcher.class.getResource("/fxml/" + "game" + ".fxml"));
+        fxmlLoader.setLocation(SceneHandler.class.getResource("/fxml/" + "game" + ".fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
