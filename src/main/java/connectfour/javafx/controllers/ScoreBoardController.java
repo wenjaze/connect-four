@@ -27,7 +27,7 @@ public class ScoreBoardController {
     }*/
 
     @FXML
-    public void handleBackToStartUpButton(ActionEvent event) throws IOException {
+    void handleBackToStartUpButton(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/startup.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
