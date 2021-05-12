@@ -30,7 +30,12 @@ public class StartUpController {
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
             log.trace("Fill our player names field.");
         } else {
-            swapToGameScene(actionEvent);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+            Parent root = fxmlLoader.load();
+            fxmlLoader.<GameController>getController().initWithData(player1.getText(), player2.getText());
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
             log.trace("Switching to GameScene...");
         }
     }
