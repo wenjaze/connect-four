@@ -4,10 +4,10 @@
     <persistence-unit name="jpa-persistence-unit-1" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@oracle.inf.unideb.hu:1521:ora19c"/>
-            <property name="javax.persistence.jdbc.user" value="u_cu1s54"/>
-            <property name="javax.persistence.jdbc.password" value="kalvinter"/>
-            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="${db.url}}"/>
+            <property name="javax.persistence.jdbc.user" value="${db.user}"/>
+            <property name="javax.persistence.jdbc.password" value="${db.password}"/>
+            <property name="javax.persistence.jdbc.driver" value="${db.driver}}"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>

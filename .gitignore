@@ -146,12 +146,14 @@ fabric.properties
 
 .idea/
 
+
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
 
 *.iml
 modules.xml
 .idea/misc.xml
 *.ipr
+*/META-INF/*
 
 # Sonarlint plugin
 .idea/sonarlint
@@ -168,6 +170,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
+db.properties
 
 ### NetBeans ###
 **/nbproject/private/
