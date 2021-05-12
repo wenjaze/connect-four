@@ -21,7 +21,7 @@ public class GameResultDao extends GenericJpaDao<GameResult> {
             return instance;
         }
         instance = new GameResultDao();
-        instance.setEntityManager(Persistence.createEntityManagerFactory("jpa-persistence-unit-1").createEntityManager();
+        instance.setEntityManager(Persistence.createEntityManagerFactory("jpa-persistence-unit-1").createEntityManager());
         return instance;
     }
 
