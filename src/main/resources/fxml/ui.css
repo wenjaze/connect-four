@@ -1,9 +1,9 @@
 .cell {
     -fx-border-color: rgb(49, 89, 23);
     -fx-border-radius: 5;
-    -fx-background-color: oldlace;
+    -fx-background-color: ghostwhite;
 }
 
 .cell:hover {
-    -fx-background-color: white;
+    -fx-background-color: gainsboro;
 }

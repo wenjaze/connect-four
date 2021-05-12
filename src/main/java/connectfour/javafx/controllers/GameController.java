@@ -6,16 +6,12 @@ import connectfour.results.GameResult;
 import connectfour.results.GameResultDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -62,15 +58,14 @@ public class GameController {
     }
 
     private GameResult getGameResults() {
-        GameResult gameResult = GameResult.builder()
+
+        return GameResult.builder()
                 .player1(playerName1)
                 .player2(playerName2)
                 .duration(Duration.between(gameStart, Instant.now()))
                 .winner(getWinnerFromColor())
                 .circlesPlaced(circlePlaced)
                 .build();
-
-        return gameResult;
     }
 
     private StackPane addCell(Cell cellColor) {
@@ -91,8 +86,8 @@ public class GameController {
         Circle circle = new Circle(board.getCellSize());
         circle.setFill(switch (cellColor) {
             case EMPTY -> Color.TRANSPARENT;
-            case RED -> Color.RED;
-            case BLUE -> Color.BLUE;
+            case RED -> Color.rgb(255, 92, 92);
+            case BLUE -> Color.rgb(79, 117, 255);
         });
         return circle;
     }
@@ -158,15 +153,6 @@ public class GameController {
         alert.setContentText(alertMessage);
         alert.showAndWait();
         log.trace(alertMessage);
-    }
-
-    private void swapEndOfGameScene(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/endofgame.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-        log.trace("Finished game, loading Top Ten scene.");
     }
 
     public void initWithData(String player1, String player2) {

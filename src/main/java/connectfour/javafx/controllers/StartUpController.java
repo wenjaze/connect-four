@@ -25,19 +25,34 @@ public class StartUpController {
     @FXML
     private TextField player2;
 
+    @FXML
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
-        log.info("Switching to GameScene...");
-        swapToGameScene(actionEvent);
+        if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
+            log.trace("Fill our player names field.");
+        } else {
+            swapToGameScene(actionEvent);
+            log.trace("Switching to GameScene...");
+        }
+    }
+
+    @FXML
+    public void handleSwitchToScoreBoardButton(ActionEvent actionEvent) throws IOException {
+        swapToScoreBoardScene(actionEvent);
     }
 
     private void swapToGameScene(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
+        swapToScene("/fxml/game.fxml", actionEvent);
+    }
+
+    private void swapToScoreBoardScene(ActionEvent actionEvent) throws IOException {
+        swapToScene("/fxml/scoreboard.fxml", actionEvent);
+    }
+
+    private void swapToScene(String path, ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
         Parent root = fxmlLoader.load();
-        fxmlLoader.<GameController>getController().initWithData(player1.getText(), player2.getText());
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
-        log.trace("Finished game, loading Top Ten scene.");
     }
-
 }

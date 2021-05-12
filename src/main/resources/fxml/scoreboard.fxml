@@ -5,24 +5,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1"
+      minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/11.0.1"
       fx:controller="connectfour.javafx.controllers.ScoreBoardController">
     <children>
-        <TableView fx:id="toptenTable" editable="true" layoutX="25.0" layoutY="74.0" prefHeight="550.0"
-                   prefWidth="650.0">
+        <TableView fx:id="scoreBoard" editable="true" layoutX="25.0" layoutY="74.0" prefHeight="800"
+                   prefWidth="600">
             <columns>
-                <TableColumn fx:id="player" prefWidth="200.0" text="Player"/>
-                <TableColumn fx:id="steps" prefWidth="50.0" text="Steps"/>
+                <TableColumn fx:id="winner" prefWidth="295.0" text="Date"/>
+                <TableColumn fx:id="player1" prefWidth="200.0" text="Player1"/>
+                <TableColumn fx:id="player2" prefWidth="100.0" text="Player2"/>
                 <TableColumn fx:id="duration" prefWidth="100.0" text="Duration"/>
                 <TableColumn fx:id="created" prefWidth="295.0" text="Date"/>
+                <TableColumn fx:id="circlesPlaced" prefWidth="295.0" text="Circles placed"/>
             </columns>
         </TableView>
-        <Label layoutX="272.0" layoutY="32.0" text="Top Ten games:">
+        <Label layoutX="272.0" layoutY="32.0" text="SCOREBOARD">
             <font>
                 <Font size="22.0"/>
             </font>
         </Label>
-        <Button layoutX="300.0" layoutY="635.0" mnemonicParsing="false" onAction="#handleBackToGameButton"
-                prefHeight="51.0" prefWidth="122.0" text="Main menu"/>
+        <Button layoutX="300.0" layoutY="635.0" mnemonicParsing="false"
+                prefHeight="51.0" prefWidth="122.0" text="BACK"/>
     </children>
 </Pane>
