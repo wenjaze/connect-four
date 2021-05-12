@@ -12,9 +12,17 @@
   - h2
   - hibernate
   - common-langs
+- [*official requirements*](https://arato.inf.unideb.hu/jeszenszky.peter/download/swe/swe-spec_hu.pdf)
 
 #### TODO :
 - [ ] unit tests (design by testing ?)
-- [ ] generic jpa dao (for registering user score)
-- [ ] MVC architectural pattern development
-- [ ] ... ?
+- [x] generic jpa dao (for registering user score)
+- [x] MVC architectural pattern development
+- [ ] javadoc site
+**- Apache Maven requirements (pom.xml)**:
+  - [ ] description
+  - [ ] developers
+  - [ ] properties/project.build.sourceEncoding
+  - [ ] properties/maven.compiler.release
+  - [ ] properties/exec.mainClass
+  - [ ] scm/developerConnection
