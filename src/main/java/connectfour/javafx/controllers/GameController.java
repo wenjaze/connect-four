@@ -1,8 +1,9 @@
 package connectfour.javafx.controllers;
 
-import connectfour.javafx.utils.data.PlayerData;
 import connectfour.models.BoardModel;
 import connectfour.models.Cell;
+import connectfour.results.GameResult;
+import connectfour.results.GameResultDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,26 +20,32 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 @Slf4j
 public class GameController {
 
     @Inject
     FXMLLoader fxmlLoader = new FXMLLoader();
-    private String playerName1;
-
-    private BoardModel board = new BoardModel();
 
     @FXML
     private GridPane gridPane;
-
+    private int circlePlaced;
     private Cell currentPlayer = Cell.EMPTY;
+    private String playerName1;
     private String playerName2;
+    private BoardModel board;
+    private Instant gameStart;
+    private GameResultDao gameResultDao;
 
     @FXML
     private void initialize() {
+        circlePlaced = 0;
+        gameResultDao = GameResultDao.getInstance();
+        gameStart = Instant.now();
+        board = new BoardModel();
         drawNewGameState();
-        System.out.println(PlayerData.getPlayerName1());
         currentPlayer = Cell.RED;
     }
 
@@ -52,6 +59,18 @@ public class GameController {
                 gridPane.add(cell, i, j);
             }
         }
+    }
+
+    private GameResult getGameResults() {
+        GameResult gameResult = GameResult.builder()
+                .player1(playerName1)
+                .player2(playerName2)
+                .duration(Duration.between(gameStart, Instant.now()))
+                .winner(getWinnerFromColor())
+                .circlesPlaced(circlePlaced)
+                .build();
+
+        return gameResult;
     }
 
     private StackPane addCell(Cell cellColor) {
@@ -110,6 +129,7 @@ public class GameController {
             if (board.isWinning(currentPlayer)) {
                 doIfPlayerWon(currentPlayer);
             } else {
+                circlePlaced++;
                 switchPlayer();
             }
         } else {
@@ -118,6 +138,9 @@ public class GameController {
     }
 
     private void doIfPlayerWon(Cell winner) {
+        GameResult actualGameResult = getGameResults();
+        log.info(actualGameResult.getPlayer1(), actualGameResult.getPlayer2(), actualGameResult.getWinner());
+        gameResultDao.persist(getGameResults());
         showAlert("Congratulations!", getWinnerFromColor() + " has won the game!", Alert.AlertType.CONFIRMATION);
         board = new BoardModel();
         drawNewGameState();
