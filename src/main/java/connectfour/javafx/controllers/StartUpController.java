@@ -33,7 +33,7 @@ public class StartUpController {
     private void swapToGameScene(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
         Parent root = fxmlLoader.load();
-        fxmlLoader.<GameController>getController().setPlayerNames(player1.getText(), player2.getText());
+        fxmlLoader.<GameController>getController().initWithData(player1.getText(), player2.getText());
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

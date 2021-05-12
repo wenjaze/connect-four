@@ -1,5 +1,6 @@
 package connectfour.javafx.controllers;
 
+import connectfour.javafx.utils.data.PlayerData;
 import connectfour.models.BoardModel;
 import connectfour.models.Cell;
 import javafx.fxml.FXML;
@@ -37,12 +38,8 @@ public class GameController {
     @FXML
     private void initialize() {
         drawNewGameState();
+        System.out.println(PlayerData.getPlayerName1());
         currentPlayer = Cell.RED;
-    }
-
-    public void setPlayerNames(String playerName1, String playerName2) {
-        this.playerName1 = playerName1;
-        this.playerName2 = playerName2;
     }
 
     private void drawNewGameState() {
@@ -53,7 +50,6 @@ public class GameController {
             for (int j = 0; j < board.getRowNum(); j++) {
                 StackPane cell = addCell(board.getCellFill(i, j));
                 gridPane.add(cell, i, j);
-                //log.trace("Setting cell state to : "+board.getCellFill(i,j).toString());
             }
         }
     }
@@ -69,7 +65,6 @@ public class GameController {
                 e.printStackTrace();
             }
         });
-
         return cell;
     }
 
@@ -113,18 +108,20 @@ public class GameController {
         if (!board.isColFull(col)) {
             placeColoredCircle(col);
             if (board.isWinning(currentPlayer)) {
-                doIfPlayerWon(currentPlayer, event);
+                doIfPlayerWon(currentPlayer);
+            } else {
+                switchPlayer();
             }
-            switchPlayer();
         } else {
             showAlert("Can't place circle", "Column " + (col + 1) + " is full.", Alert.AlertType.INFORMATION);
         }
     }
 
-    private void doIfPlayerWon(Cell winner, MouseEvent mouseEvent) throws IOException {
-        swapEndOfGameScene(mouseEvent);
+    private void doIfPlayerWon(Cell winner) {
+        showAlert("Congratulations!", getWinnerFromColor() + " has won the game!", Alert.AlertType.CONFIRMATION);
         board = new BoardModel();
         drawNewGameState();
+        currentPlayer = Cell.RED;
     }
 
     private int getColFromMousePos(MouseEvent event) {
@@ -143,10 +140,14 @@ public class GameController {
     private void swapEndOfGameScene(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/endofgame.fxml"));
         Parent root = fxmlLoader.load();
-        fxmlLoader.<EndOfGameController>getController().setEndOfGameMessage(currentPlayer.toString(), getWinnerFromColor());
         Stage stage = (Stage) ((Node) event.getTarget()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
         log.trace("Finished game, loading Top Ten scene.");
+    }
+
+    public void initWithData(String player1, String player2) {
+        playerName1 = player1;
+        playerName2 = player2;
     }
 }
