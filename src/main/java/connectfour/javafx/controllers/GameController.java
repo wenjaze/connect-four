@@ -20,12 +20,8 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * This controller handles the game states, using the
- * {@link BoardModel}
- * <p>
- * Recording data using the
- * {@link GameResultDao} DAO class, extension of the abstract class
- * {@code GenericJpaDao}
+ * This controller handles the game states, using the {@link BoardModel}.
+ * Recording data using the {@link GameResultDao} DAO class, extension of the abstract class {@code GenericJpaDao}.
  */
 @Slf4j
 public class GameController {
@@ -42,8 +38,7 @@ public class GameController {
 
     /**
      * Initializing the game board, instantiating {@link GameResultDao} Singleton class
-     * and setting the current player to {@code Cell.RED}
-     *
+     * and setting the current player to {@code Cell.RED}.
      */
     @FXML
     private void initialize() {
@@ -108,9 +103,9 @@ public class GameController {
     }
 
     /**
-     * Creates a Circle shape object, which you can add to cell {@link StackPane} later
-     * @param cellColor Color of the circle you want to add
-     * @return a circle shape JavaFX object
+     * Creates a Circle shape object, which you can add to {@link StackPane} later
+     * @param cellColor Color of the circle you want to add.
+     * @return A circle shape JavaFX object.
      */
     private Circle createCircle(Cell cellColor) {
         Circle circle = new Circle(board.getCellSize());
@@ -137,6 +132,7 @@ public class GameController {
     /**
      * Switches the player to the opposite color.
      * (helper function)
+     * @return a {@link Cell} type object.
      */
     private String getWinnerFromColor() {
         return switch (currentPlayer) {
@@ -150,6 +146,8 @@ public class GameController {
      * This function is used to placed a cell of a specific color to the board.
      * Uses the {@code BoardModel.getPlacementLocation()} function to determine where
      * to place the cell.
+     *
+     * @param col The current column the player wants to place a Circle to.
      */
     private void placeColoredCircle(int col) {
         int row = board.getPlacementLocation(col);

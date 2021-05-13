@@ -45,6 +45,7 @@ public class BoardModelTest {
         assertThrows(IndexOutOfBoundsException.class, () -> testBoardModel.setCell(0, 6, Cell.RED));
     }
 
+
     @Test
     void testHorizontalCheck() {
         testBoardModel.setCell(0, 0, testCurrentPlayer);

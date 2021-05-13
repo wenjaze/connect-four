@@ -9,6 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+/**
+ * Main menu scene, you can navigate from here to the Scoreboard or you
+ * can start the game.
+ * <p>
+ * This is the Controller of the first scene that loads when starting the application.
+ */
+
 @Slf4j
 public class StartUpController {
 
@@ -26,6 +33,8 @@ public class StartUpController {
 
     /**
      * Checks if playerName fields are empty, proceeds if they're filled.
+     * Throws a text alert above the input fields otherwise.
+     * You cant continue to the game without filling the fields.
      *
      * @param actionEvent Getting the actionEvent from fxml the button.
      * @throws IOException Default exception for FXMLLoader
