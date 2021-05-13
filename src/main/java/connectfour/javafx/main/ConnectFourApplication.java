@@ -1,4 +1,4 @@
-package connectfour.javafx;
+package connectfour.javafx.main;
 
 
 import connectfour.javafx.utils.SceneHandler;

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -22,7 +21,6 @@ import java.util.Objects;
 @Data
 public class SceneHandler {
 
-    @Inject
     private static FXMLLoader fxmlLoader = new FXMLLoader();
 
     public static void switchToScoreBoard(ActionEvent actionEvent) throws IOException {

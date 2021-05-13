@@ -27,7 +27,6 @@ import java.time.Instant;
  * {@link GameResultDao} DAO class, extension of the abstract class
  * {@code GenericJpaDao}
  */
-
 @Slf4j
 public class GameController {
 
@@ -78,7 +77,6 @@ public class GameController {
      * about the current game state.
      * @return a {@link GameResult} object.
      */
-
     private GameResult getGameResults() {
         return GameResult.builder()
                 .player1(playerName1)
@@ -95,7 +93,6 @@ public class GameController {
      * @param cellColor The color to set the cell to.
      * @return {@link StackPane} cell object
      */
-
     private StackPane addCell(Cell cellColor) {
         StackPane cell = new StackPane();
         cell.getStyleClass().add("cell");
@@ -115,7 +112,6 @@ public class GameController {
      * @param cellColor Color of the circle you want to add
      * @return a circle shape JavaFX object
      */
-
     private Circle createCircle(Cell cellColor) {
         Circle circle = new Circle(board.getCellSize());
         circle.setFill(switch (cellColor) {
@@ -130,7 +126,6 @@ public class GameController {
      * Switches the player to the opposite color.
      * (helper function)
      */
-
     private void switchPlayer() {
         currentPlayer = switch (currentPlayer) {
             case BLUE -> Cell.RED;
@@ -143,7 +138,6 @@ public class GameController {
      * Switches the player to the opposite color.
      * (helper function)
      */
-
     private String getWinnerFromColor() {
         return switch (currentPlayer) {
             case BLUE -> playerName2;
@@ -157,7 +151,6 @@ public class GameController {
      * Uses the {@code BoardModel.getPlacementLocation()} function to determine where
      * to place the cell.
      */
-
     private void placeColoredCircle(int col) {
         int row = board.getPlacementLocation(col);
         board.setCell(col, row, currentPlayer);
@@ -198,7 +191,6 @@ public class GameController {
      *
      * @param winner To show the name in the winning screen alert.
      */
-
     private void doIfPlayerWon(Cell winner) {
         GameResult actualGameResult = getGameResults();
         log.info(actualGameResult.getPlayer1(), actualGameResult.getPlayer2(), actualGameResult.getWinner());

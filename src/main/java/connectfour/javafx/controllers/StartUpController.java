@@ -3,19 +3,14 @@ package connectfour.javafx.controllers;
 import connectfour.javafx.utils.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.inject.Inject;
 import java.io.IOException;
 
 @Slf4j
 public class StartUpController {
-
-    @Inject
-    FXMLLoader fxmlLoader = new FXMLLoader();
 
     @FXML
     private TextField player1;
