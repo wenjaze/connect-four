@@ -19,11 +19,12 @@
 - [x] unit tests (design by testing ?)
 - [x] generic jpa dao (for registering user score)
 - [x] MVC architectural pattern development
-- [ ] javadoc site
+- [x] javadoc site
+
 **- Apache Maven requirements (pom.xml)**:
-  - [ ] description
-  - [ ] developers
-  - [ ] properties/project.build.sourceEncoding
-  - [ ] properties/maven.compiler.release
+  - [x] description
+  - [x] developers
+  - [x] properties/project.build.sourceEncoding
+  - [x] properties/maven.compiler.release
   - [x] properties/exec.mainClass
-  - [ ] scm/developerConnection
+  - [x] scm/developerConnection
