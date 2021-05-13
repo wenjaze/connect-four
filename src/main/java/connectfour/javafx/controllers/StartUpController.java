@@ -37,7 +37,7 @@ public class StartUpController {
      * You cant continue to the game without filling the fields.
      *
      * @param actionEvent Getting the actionEvent from fxml the button.
-     * @throws IOException Default exception for FXMLLoader
+     * @throws IOException Default exception for FXMLLoader.
      */
     @FXML
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
@@ -51,7 +51,7 @@ public class StartUpController {
     }
 
     /**
-     * Helper function for setting playerNames
+     * Helper function for setting playerNames.
      */
 
     private void setPlayerNames() {

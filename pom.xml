@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
     <version>1.0</version>
     <description>Java implementation of a well-known board game called connect-four. This is a project
-        for my university class -> Software Engineering
+        for my university class -> Software Engineering and Technology
     </description>
 
     <developers>
@@ -28,7 +28,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-        <maven.compiler.release>15</maven.compiler.release>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <java.version>16</java.version>
         <exec.mainClass>connectfour.javafx.main.Main</exec.mainClass>
         <javafx.version>16</javafx.version>
         <junit.jupiter.version>5.7.1</junit.jupiter.version>

@@ -32,10 +32,25 @@ public class BoardModel {
         }
     }
 
+    /**
+     * Get a specific cell fill color.
+     *
+     * @param i Row of the cell.
+     * @param j Column of the cell.
+     * @return {@link Cell} type enum.
+     */
     public Cell getCellFill(int i, int j) {
         return board[i][j];
     }
 
+
+    /**
+     * Sets the color of a specific cell.
+     *
+     * @param row    Row of the cell.
+     * @param col    Column of the cell.
+     * @param player The color you want the cell to be.
+     */
     public void setCell(int row, int col, Cell player) {
         board[row][col] = player;
     }
