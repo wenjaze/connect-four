@@ -1,9 +1,11 @@
 package connectfour.javafx.controllers;
 
+import connectfour.javafx.utils.SceneHandler;
 import connectfour.models.BoardModel;
 import connectfour.models.Cell;
 import connectfour.results.GameResult;
 import connectfour.results.GameResultDao;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -132,6 +134,7 @@ public class GameController {
         }
     }
 
+
     private void doIfPlayerWon(Cell winner) {
         GameResult actualGameResult = getGameResults();
         log.info(actualGameResult.getPlayer1(), actualGameResult.getPlayer2(), actualGameResult.getWinner());
@@ -161,4 +164,7 @@ public class GameController {
     }
 
 
+    public void handleBackToStartUpButton(ActionEvent actionEvent) throws IOException {
+        SceneHandler.switchToStartUpScene(actionEvent);
+    }
 }
