@@ -51,7 +51,7 @@ public class ScoreBoardController {
     private TableColumn<GameResult, Duration> duration;
 
     @FXML
-    private TableColumn<GameResult, ZonedDateTime> created;
+    private TableColumn<GameResult, ZonedDateTime> date;
 
     private GameResultDao gameResultDao;
 
@@ -66,7 +66,7 @@ public class ScoreBoardController {
 
         setPropertyValues();
         formatDurationValue();
-        formatCreatedValue();
+        formatDateValue();
 
         ObservableList<GameResult> gameResultObservableArray = FXCollections.observableArrayList();
         gameResultObservableArray.addAll(results);
@@ -79,7 +79,7 @@ public class ScoreBoardController {
         winner.setCellValueFactory(new PropertyValueFactory<>("winner"));
         circlesPlaced.setCellValueFactory(new PropertyValueFactory<>("circlesPlaced"));
         duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        created.setCellValueFactory(new PropertyValueFactory<>("created"));
+        date.setCellValueFactory(new PropertyValueFactory<>("created"));
     }
 
     private void formatDurationValue() {
@@ -97,9 +97,9 @@ public class ScoreBoardController {
         });
     }
 
-    private void formatCreatedValue() {
-        created.setCellFactory(column -> new TableCell<GameResult, ZonedDateTime>() {
-            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss Z");
+    private void formatDateValue() {
+        date.setCellFactory(column -> new TableCell<GameResult, ZonedDateTime>() {
+            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss");
 
             @Override
             protected void updateItem(ZonedDateTime item, boolean empty) {
