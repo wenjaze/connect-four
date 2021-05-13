@@ -29,14 +29,16 @@
       </Label>
       <TextField fx:id="player1" alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity"
                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
-                 promptText="Red player name" style="-fx-border-color: gold;">
+                 promptText="Red player name" style="-fx-border-color: gold; -fx-border-radius: 20;"
+                 styleClass="playerNameField" stylesheets="@ui.css">
          <StackPane.margin>
             <Insets top="200.0"/>
          </StackPane.margin>
       </TextField>
       <TextField fx:id="player2" alignment="BOTTOM_LEFT" layoutX="210.0" layoutY="295.0" maxHeight="-Infinity"
                  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
-                 promptText="Blue player name" style="-fx-border-color: gold;">
+                 promptText="Blue player name" style="-fx-border-color: gold; -fx-border-radius: 20;"
+                 styleClass="playerNameField" stylesheets="@ui.css">
          <opaqueInsets>
             <Insets/>
          </opaqueInsets>
@@ -46,7 +48,8 @@
       </TextField>
       <Button id="playButton" fx:id="switchToGameButton" alignment="CENTER" mnemonicParsing="false"
               onAction="#handleSwitchToGameButton" prefHeight="20.0" prefWidth="200.0"
-              style="-fx-background-color: gold;" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+              style="-fx-background-color: floralwhite;" styleClass="menuButton" stylesheets="@ui.css" text="PLAY"
+              textAlignment="CENTER" textFill="#ff5c5c">
          <font>
             <Font size="14.0"/>
          </font>
@@ -60,10 +63,10 @@
             <Insets top="-20.0"/>
          </StackPane.margin>
       </Button>
-      <Button id="playButton" fx:id="switchToScoreBoardButton" alignment="CENTER"
-              layoutX="210.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleSwitchToScoreBoardButton"
-              prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: gold;" text="SCOREBOARD"
-              textAlignment="CENTER" textFill="WHITE">
+      <Button id="scoreBoardButton" fx:id="switchToScoreBoardButton" alignment="CENTER" layoutX="210.0" layoutY="185.0"
+              mnemonicParsing="false" onAction="#handleSwitchToScoreBoardButton" prefHeight="20.0" prefWidth="200.0"
+              style="-fx-background-color: floralwhite;" styleClass="menuButton" stylesheets="@ui.css" text="SCOREBOARD"
+              textAlignment="CENTER" textFill="#4f75ff">
          <font>
             <Font size="14.0"/>
          </font>
@@ -77,5 +80,10 @@
             <Insets top="60.0"/>
          </StackPane.margin>
       </Button>
+      <Label fx:id="requirementLabel" textAlignment="CENTER" textFill="RED">
+         <StackPane.margin>
+            <Insets top="150.0"/>
+         </StackPane.margin>
+      </Label>
    </children>
 </StackPane>

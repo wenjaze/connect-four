@@ -1,5 +1,6 @@
 package connectfour.javafx.utils;
 
+import connectfour.javafx.controllers.GameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j
 @Data
@@ -19,15 +21,21 @@ public class SceneHandler {
     @Inject
     private static FXMLLoader fxmlLoader = new FXMLLoader();
 
-    private static void switchScene(String fxmlName, ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(SceneHandler.class.getResource("/fxml/" + fxmlName + ".fxml"));
+    public static void switchToScoreBoard(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(SceneHandler.class.getResource("/fxml/scoreboard.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    public static void switchToGame(ActionEvent actionEvent) throws IOException {
-        switchScene("game", actionEvent);
+    public static void switchToGameScene(ActionEvent actionEvent, String playerName1, String playerName2) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneHandler.class.getResource("/fxml/game.fxml"));
+        Parent root = fxmlLoader.load();
+        fxmlLoader.<GameController>getController().initWithData(playerName1, playerName2);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+        log.trace("Switching to GameScene...");
     }
 
     public static void switchToStartup(Stage stage) throws IOException {
@@ -38,9 +46,4 @@ public class SceneHandler {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    public static void switchToScoreBoard(ActionEvent actionEvent) throws IOException {
-        switchScene("scoreboard", actionEvent);
-    }
-
 }

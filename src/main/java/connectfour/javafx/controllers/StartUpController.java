@@ -1,13 +1,11 @@
 package connectfour.javafx.controllers;
 
+import connectfour.javafx.utils.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
@@ -26,38 +24,31 @@ public class StartUpController {
     private TextField player2;
 
     @FXML
+    private Label requirementLabel;
+
+    private String playerName1;
+    private String playerName2;
+
+    // TODO : player names req. label
+    @FXML
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
-            log.trace("Fill our player names field.");
+            requirementLabel.setText("* Fill out player names first");
+            log.trace("Fill player names field.");
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/game.fxml"));
-            Parent root = fxmlLoader.load();
-            fxmlLoader.<GameController>getController().initWithData(player1.getText(), player2.getText());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-            log.trace("Switching to GameScene...");
+            setPlayerNames();
+            SceneHandler.switchToGameScene(actionEvent, playerName1, playerName2);
         }
+    }
+
+    private void setPlayerNames() {
+        playerName1 = player1.getText();
+        playerName2 = player2.getText();
     }
 
     @FXML
     public void handleSwitchToScoreBoardButton(ActionEvent actionEvent) throws IOException {
-        swapToScoreBoardScene(actionEvent);
+        SceneHandler.switchToScoreBoard(actionEvent);
     }
 
-    private void swapToGameScene(ActionEvent actionEvent) throws IOException {
-        swapToScene("/fxml/game.fxml", actionEvent);
-    }
-
-    private void swapToScoreBoardScene(ActionEvent actionEvent) throws IOException {
-        swapToScene("/fxml/scoreboard.fxml", actionEvent);
-    }
-
-    private void swapToScene(String path, ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-        Parent root = fxmlLoader.load();
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
 }
