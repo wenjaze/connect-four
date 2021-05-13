@@ -112,7 +112,7 @@ public class GameController {
 
     private void placeColoredCircle(int col) {
         int row = board.getPlacementLocation(col);
-        board.setCell(row, col, currentPlayer);
+        board.setCell(col, row, currentPlayer);
         StackPane cell = addCell(currentPlayer);
         gridPane.add(cell, col, row);
         log.trace(currentPlayer + " circle placed at : (" + row + " - " + col + ")");

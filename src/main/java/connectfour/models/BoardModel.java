@@ -29,7 +29,7 @@ public class BoardModel {
     }
 
     public void setCell(int row, int col, Cell player) {
-        board[col][row] = player;
+        board[row][col] = player;
     }
 
     public int getPlacementLocation(int col) {
