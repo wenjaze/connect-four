@@ -3,6 +3,7 @@ package connectfour.results;
 import connectfour.utils.jpa.GenericJpaDao;
 
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class GameResultDao extends GenericJpaDao<GameResult> {
 
@@ -24,9 +25,8 @@ public class GameResultDao extends GenericJpaDao<GameResult> {
         return instance;
     }
 
-/*    public List<GameResult> findBest(int n) {
-        return entityManager.createQuery("SELECT r FROM GameResult r WHERE r.solved = true ORDER BY r.duration ASC, r.created DESC", GameResult.class)
-                .setMaxResults(n)
+    public List<GameResult> findBestFirstN() {
+        return entityManager.createQuery("SELECT * FROM GameResult ORDER BY id;", GameResult.class)
                 .getResultList();
-    }*/
+    }
 }
