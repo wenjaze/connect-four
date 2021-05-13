@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Controls the scoreBoard, gets data from GameResultDAO,
- * and adapts it into the {@link TableView} view
+ * and adapts it into the {@link TableView} view.
  */
 
 @Slf4j
@@ -68,6 +68,7 @@ public class ScoreBoardController {
         gameResultObservableArray.addAll(results);
         scoreBoard.setItems(gameResultObservableArray);
     }
+
 
     private void setPropertyValues() {
         player1.setCellValueFactory(new PropertyValueFactory<>("player1"));

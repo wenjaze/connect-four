@@ -7,6 +7,7 @@ import connectfour.results.GameResult;
 import connectfour.results.GameResultDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -161,10 +162,11 @@ public class GameController {
      * This gets called when a player clicks on row.
      * If its not full, then the currentPlayer places a cell,
      * otherwise it throws an alert.
-     *
+     * <p>
      * Checks for {@code BoardModel.isWinning(currentPlayer)} every click.
+     *
      * @param event Event of the mouseClick to get the clicked column from.
-     * @throws IOException as default MouseEvent exception
+     * @throws IOException as default MouseEvent exception.
      */
     @FXML
     private void handleMouseClick(MouseEvent event) throws IOException {
@@ -204,6 +206,14 @@ public class GameController {
         return GridPane.getColumnIndex(square);
     }
 
+    /**
+     * Helper function to create an alert popup window.
+     *
+     * @param headerMessage Content of the header message.
+     * @param alertMessage  Main content of the alert message.
+     * @param alertType     Type of the alert.
+     */
+
     private void showAlert(String headerMessage, String alertMessage, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setHeaderText(headerMessage);
@@ -212,6 +222,12 @@ public class GameController {
         log.trace(alertMessage);
     }
 
+    /**
+     * A function to solve transmitting data between FXML {@link Scene}s.
+     *
+     * @param player1 Name of player1.
+     * @param player2 Name of player2.
+     */
     public void initWithData(String player1, String player2) {
         playerName1 = player1;
         playerName2 = player2;
