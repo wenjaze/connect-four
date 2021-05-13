@@ -6,7 +6,7 @@
   - maven
   - delombok
   - junit
-  - jdbi
+  - jdbc
   - log4j
   - javadoc
   - h2
@@ -15,7 +15,8 @@
 - [*official requirements*](https://arato.inf.unideb.hu/jeszenszky.peter/download/swe/swe-spec_hu.pdf)
 
 #### TODO :
-- [ ] unit tests (design by testing ?)
+
+- [x] unit tests (design by testing ?)
 - [x] generic jpa dao (for registering user score)
 - [x] MVC architectural pattern development
 - [ ] javadoc site
