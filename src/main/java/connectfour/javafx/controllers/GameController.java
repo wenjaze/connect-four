@@ -1,5 +1,6 @@
 package connectfour.javafx.controllers;
 
+import com.google.inject.Inject;
 import connectfour.javafx.utils.SceneHandler;
 import connectfour.models.BoardModel;
 import connectfour.models.Cell;
@@ -16,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
