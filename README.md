@@ -24,5 +24,5 @@
   - [ ] developers
   - [ ] properties/project.build.sourceEncoding
   - [ ] properties/maven.compiler.release
-  - [ ] properties/exec.mainClass
+  - [x] properties/exec.mainClass
   - [ ] scm/developerConnection
