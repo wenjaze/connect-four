@@ -99,5 +99,4 @@ public abstract class GenericJpaDao<T> {
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
-
 }
