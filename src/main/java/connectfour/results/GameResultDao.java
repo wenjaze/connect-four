@@ -26,7 +26,7 @@ public class GameResultDao extends GenericJpaDao<GameResult> {
     }
 
     public List<GameResult> findBestFirstN() {
-        return entityManager.createQuery("SELECT * FROM GameResult ORDER BY id;", GameResult.class)
+        return entityManager.createQuery("SELECT * FROM GameResult ORDER BY created;", GameResult.class)
                 .getResultList();
     }
 }

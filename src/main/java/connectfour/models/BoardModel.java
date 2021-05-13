@@ -32,7 +32,7 @@ public class BoardModel {
         board[col][row] = player;
     }
 
-    public int getPlacementLocation(int col, Cell currentPlayer) {
+    public int getPlacementLocation(int col) {
         int whereToColor = 0;
         boolean found = false;
         int currentRow = rowNum - 1;

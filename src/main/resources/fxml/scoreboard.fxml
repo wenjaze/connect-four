@@ -19,9 +19,9 @@
     </TableView>
     <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="545.0" layoutY="680.0"
             mnemonicParsing="false" onAction="#handleBackToStartUpButton" prefHeight="30.0" prefWidth="200.0"
-            text="BACK" textAlignment="CENTER" textFill="WHITE"/>
+            text="BACK" textAlignment="CENTER" styleClass="menuButton" stylesheets="@ui.css"/>
     <Label alignment="CENTER" contentDisplay="TOP" layoutX="545.0" layoutY="25.0" text="SCOREBOARD"
-           textAlignment="CENTER" textFill="GOLD">
+           textAlignment="CENTER" textFill="rgb(255, 92, 92)">
         <font>
             <Font size="30.0"/>
         </font>

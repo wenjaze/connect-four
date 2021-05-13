@@ -111,7 +111,7 @@ public class GameController {
     }
 
     private void placeColoredCircle(int col) {
-        int row = board.getPlacementLocation(col, currentPlayer);
+        int row = board.getPlacementLocation(col);
         board.setCell(row, col, currentPlayer);
         StackPane cell = addCell(currentPlayer);
         gridPane.add(cell, col, row);
@@ -166,5 +166,9 @@ public class GameController {
 
     public void handleBackToStartUpButton(ActionEvent actionEvent) throws IOException {
         SceneHandler.switchToStartUpScene(actionEvent);
+    }
+
+    public void handleResetButton(ActionEvent actionEvent) {
+        initialize();
     }
 }
