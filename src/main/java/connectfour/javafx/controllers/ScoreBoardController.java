@@ -53,15 +53,12 @@ public class ScoreBoardController {
     @FXML
     private TableColumn<GameResult, ZonedDateTime> date;
 
-    private GameResultDao gameResultDao;
 
-
-    // TODO : implement scoreboardcontroller to display data stored on servers.
     // TODO : Add back to menu button to game scene.
 
     @FXML
     public void initialize() {
-        gameResultDao = GameResultDao.getInstance();
+        GameResultDao gameResultDao = GameResultDao.getInstance();
         List<GameResult> results = gameResultDao.findAll();
 
         setPropertyValues();
