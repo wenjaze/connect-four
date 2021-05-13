@@ -29,7 +29,7 @@
       </Label>
       <TextField fx:id="player1" alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity"
                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
-                 promptText="Red player name" style="-fx-border-color: gold; -fx-border-radius: 20;"
+                 promptText="Red player name"
                  styleClass="playerNameField" stylesheets="@ui.css">
          <StackPane.margin>
             <Insets top="200.0"/>
@@ -37,7 +37,7 @@
       </TextField>
       <TextField fx:id="player2" alignment="BOTTOM_LEFT" layoutX="210.0" layoutY="295.0" maxHeight="-Infinity"
                  maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
-                 promptText="Blue player name" style="-fx-border-color: gold; -fx-border-radius: 20;"
+                 promptText="Blue player name"
                  styleClass="playerNameField" stylesheets="@ui.css">
          <opaqueInsets>
             <Insets/>
@@ -48,7 +48,7 @@
       </TextField>
       <Button id="playButton" fx:id="switchToGameButton" alignment="CENTER" mnemonicParsing="false"
               onAction="#handleSwitchToGameButton" prefHeight="20.0" prefWidth="200.0"
-              style="-fx-background-color: floralwhite;" styleClass="menuButton" stylesheets="@ui.css" text="PLAY"
+              styleClass="menuButton" stylesheets="@ui.css" text="PLAY"
               textAlignment="CENTER" textFill="#ff5c5c">
          <font>
             <Font size="14.0"/>
@@ -65,7 +65,7 @@
       </Button>
       <Button id="scoreBoardButton" fx:id="switchToScoreBoardButton" alignment="CENTER" layoutX="210.0" layoutY="185.0"
               mnemonicParsing="false" onAction="#handleSwitchToScoreBoardButton" prefHeight="20.0" prefWidth="200.0"
-              style="-fx-background-color: floralwhite;" styleClass="menuButton" stylesheets="@ui.css" text="SCOREBOARD"
+              styleClass="menuButton" stylesheets="@ui.css" text="SCOREBOARD"
               textAlignment="CENTER" textFill="#4f75ff">
          <font>
             <Font size="14.0"/>

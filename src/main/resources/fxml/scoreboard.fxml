@@ -6,26 +6,24 @@
 <Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/16"
       fx:controller="connectfour.javafx.controllers.ScoreBoardController">
-    <children>
-        <TableView fx:id="scoreBoard" editable="true" layoutX="40.0" layoutY="74.0" prefHeight="600.0"
-                   prefWidth="1200.0">
-            <columns>
-                <TableColumn fx:id="winner" prefWidth="200.0" text="Winner"/>
-                <TableColumn fx:id="player1" prefWidth="200.0" text="Player1"/>
-                <TableColumn fx:id="player2" prefWidth="200.0" text="Player2"/>
-                <TableColumn fx:id="circlesPlaced" prefWidth="200.0" text="Circles placed"/>
-                <TableColumn fx:id="duration" prefWidth="100.0" text="Duration"/>
-                <TableColumn fx:id="date" prefWidth="300.0" text="Date"/>
-            </columns>
-        </TableView>
-        <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="545.0" layoutY="680.0"
-                mnemonicParsing="false" onAction="#handleBackToStartUpButton" prefHeight="30.0" prefWidth="200.0"
-                style="-fx-background-color: gold;" text="BACK" textAlignment="CENTER" textFill="WHITE"/>
-        <Label alignment="CENTER" contentDisplay="TOP" layoutX="545.0" layoutY="25.0" text="SCOREBOARD"
-               textAlignment="CENTER" textFill="GOLD">
-            <font>
-                <Font size="30.0"/>
-            </font>
-        </Label>
-    </children>
+    <TableView fx:id="scoreBoard" editable="true" layoutX="40.0" layoutY="74.0" prefHeight="600.0"
+               prefWidth="1200.0">
+        <columns>
+            <TableColumn fx:id="winner" prefWidth="200.0" text="Winner"/>
+            <TableColumn fx:id="player1" prefWidth="200.0" text="Player1"/>
+            <TableColumn fx:id="player2" prefWidth="200.0" text="Player2"/>
+            <TableColumn fx:id="circlesPlaced" prefWidth="200.0" text="Circles placed"/>
+            <TableColumn fx:id="duration" prefWidth="100.0" text="Duration"/>
+            <TableColumn fx:id="date" prefWidth="300.0" text="Date"/>
+        </columns>
+    </TableView>
+    <Button alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="545.0" layoutY="680.0"
+            mnemonicParsing="false" onAction="#handleBackToStartUpButton" prefHeight="30.0" prefWidth="200.0"
+            text="BACK" textAlignment="CENTER" textFill="WHITE"/>
+    <Label alignment="CENTER" contentDisplay="TOP" layoutX="545.0" layoutY="25.0" text="SCOREBOARD"
+           textAlignment="CENTER" textFill="GOLD">
+        <font>
+            <Font size="30.0"/>
+        </font>
+    </Label>
 </Pane>

@@ -1,5 +1,6 @@
 package connectfour.javafx.controllers;
 
+import connectfour.javafx.utils.SceneHandler;
 import connectfour.results.GameResult;
 import connectfour.results.GameResultDao;
 import javafx.collections.FXCollections;
@@ -48,9 +49,6 @@ public class ScoreBoardController {
 
     @FXML
     private TableColumn<GameResult, ZonedDateTime> date;
-
-
-    // TODO : Add back to menu button to game scene.
 
     @FXML
     public void initialize() {
@@ -108,6 +106,6 @@ public class ScoreBoardController {
 
     @FXML
     void handleBackToStartUpButton(ActionEvent event) throws IOException {
-
+        SceneHandler.switchToStartUpScene(event);
     }
 }
