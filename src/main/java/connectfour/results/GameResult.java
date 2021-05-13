@@ -9,6 +9,10 @@ import javax.persistence.*;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 
+/**
+ * A POJO class, uses Builder design patter and is a persistence entity.
+ * Used for storing data.
+ */
 
 @Builder
 @NoArgsConstructor

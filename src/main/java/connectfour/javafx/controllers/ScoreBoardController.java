@@ -20,6 +20,11 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Controls the scoreBoard, gets data from GameResultDAO,
+ * and adapts it into the {@link TableView} view
+ */
+
 @Slf4j
 public class ScoreBoardController {
 
@@ -45,6 +50,11 @@ public class ScoreBoardController {
     @FXML
     private TableColumn<GameResult, ZonedDateTime> date;
 
+
+    /**
+     * Instantiate a {@link GameResultDao} Singleton class.
+     * Gathers the information through JPA.
+     */
     @FXML
     public void initialize() {
         GameResultDao gameResultDao = GameResultDao.getInstance();

@@ -29,7 +29,12 @@ public class StartUpController {
     private String playerName1;
     private String playerName2;
 
-
+    /**
+     * Checks if playerName fields are empty, proceeds if they're filled.
+     *
+     * @param actionEvent Getting the actionEvent from fxml the button.
+     * @throws IOException Default exception for FXMLLoader
+     */
     @FXML
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
@@ -40,6 +45,10 @@ public class StartUpController {
             SceneHandler.switchToGameScene(actionEvent, playerName1, playerName2);
         }
     }
+
+    /**
+     * Helper function for setting playerNames
+     */
 
     private void setPlayerNames() {
         playerName1 = player1.getText();

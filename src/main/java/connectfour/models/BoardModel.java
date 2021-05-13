@@ -3,15 +3,23 @@ package connectfour.models;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Model for the game board class.
+ */
+
 @Slf4j
 @Data
 public class BoardModel {
 
     private final int ROWNUM = 6;
     private final int COLNUM = 7;
-    private final double cellSize = 30;
+    private int cellSize = 30;
     private Cell[][] board = new Cell[COLNUM][ROWNUM];
 
+
+    /**
+     * Creates a new instance of a {@link Cell} array, fills it with {@code Cell.EMPTY} cells.
+     */
     public BoardModel() {
         resetBoard();
     }
@@ -32,6 +40,11 @@ public class BoardModel {
         board[row][col] = player;
     }
 
+    /**
+     * @param col The current column the player wants to place a cell.
+     * @return an integer which represents the row where the next free cell is in the
+     * chosen column.
+     */
     public int getPlacementLocation(int col) {
         int whereToColor = 0;
         boolean found = false;
@@ -51,6 +64,13 @@ public class BoardModel {
         return board[col][0] != Cell.EMPTY;
     }
 
+    /**
+     * Calls the functions: {@code verticalCheck()} , {@code horizontalCheck()} , {@code forwardDiagonalCheck()} , {@code backwardDiagonalCheck()}
+     * and uses the OR operations between them, to check if we have 4 cells connected in the same color.
+     *
+     * @param player The current player color.
+     * @return A boolean var whether someone won or not.
+     */
     public boolean isWinning(Cell player) {
         return verticalCheck(player) || horizontalCheck(player) || forwardDiagonalCheck(player) || backwardDiagonalCheck(player);
     }

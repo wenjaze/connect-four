@@ -1,6 +1,5 @@
 package connectfour.javafx.controllers;
 
-import com.google.inject.Inject;
 import connectfour.javafx.utils.SceneHandler;
 import connectfour.models.BoardModel;
 import connectfour.models.Cell;
@@ -8,7 +7,6 @@ import connectfour.results.GameResult;
 import connectfour.results.GameResultDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -21,11 +19,17 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 
+/**
+ * This controller handles the game states, using the
+ * {@link BoardModel}
+ * <p>
+ * Recording data using the
+ * {@link GameResultDao} DAO class, extension of the abstract class
+ * {@code GenericJpaDao}
+ */
+
 @Slf4j
 public class GameController {
-
-    @Inject
-    FXMLLoader fxmlLoader = new FXMLLoader();
 
     @FXML
     private GridPane gridPane;
@@ -37,6 +41,11 @@ public class GameController {
     private Instant gameStart;
     private GameResultDao gameResultDao;
 
+    /**
+     * Initializing the game board, instantiating {@link GameResultDao} Singleton class
+     * and setting the current player to {@code Cell.RED}
+     *
+     */
     @FXML
     private void initialize() {
         circlePlaced = 0;
@@ -47,6 +56,10 @@ public class GameController {
         currentPlayer = Cell.RED;
     }
 
+    /**
+     * Clearing the {@code gridPane} and filling up the gridPane view
+     * with cells.
+     */
     private void drawNewGameState() {
         log.trace("Resetting board...");
         gridPane.getChildren().clear();
@@ -59,8 +72,14 @@ public class GameController {
         }
     }
 
-    private GameResult getGameResults() {
+    /**
+     *
+     * Returns a GameResult pojo object which is string data
+     * about the current game state.
+     * @return a {@link GameResult} object.
+     */
 
+    private GameResult getGameResults() {
         return GameResult.builder()
                 .player1(playerName1)
                 .player2(playerName2)
@@ -69,6 +88,13 @@ public class GameController {
                 .circlesPlaced(circlePlaced)
                 .build();
     }
+
+    /**
+     *
+     * Creates a stackPane object which you can add to gridPane.
+     * @param cellColor The color to set the cell to.
+     * @return {@link StackPane} cell object
+     */
 
     private StackPane addCell(Cell cellColor) {
         StackPane cell = new StackPane();
@@ -84,6 +110,12 @@ public class GameController {
         return cell;
     }
 
+    /**
+     * Creates a Circle shape object, which you can add to cell {@link StackPane} later
+     * @param cellColor Color of the circle you want to add
+     * @return a circle shape JavaFX object
+     */
+
     private Circle createCircle(Cell cellColor) {
         Circle circle = new Circle(board.getCellSize());
         circle.setFill(switch (cellColor) {
@@ -94,6 +126,11 @@ public class GameController {
         return circle;
     }
 
+    /**
+     * Switches the player to the opposite color.
+     * (helper function)
+     */
+
     private void switchPlayer() {
         currentPlayer = switch (currentPlayer) {
             case BLUE -> Cell.RED;
@@ -101,6 +138,11 @@ public class GameController {
             case EMPTY -> throw new NullPointerException("currentPlayer cannot be empty!");
         };
     }
+
+    /**
+     * Switches the player to the opposite color.
+     * (helper function)
+     */
 
     private String getWinnerFromColor() {
         return switch (currentPlayer) {
@@ -110,6 +152,12 @@ public class GameController {
         };
     }
 
+    /**
+     * This function is used to placed a cell of a specific color to the board.
+     * Uses the {@code BoardModel.getPlacementLocation()} function to determine where
+     * to place the cell.
+     */
+
     private void placeColoredCircle(int col) {
         int row = board.getPlacementLocation(col);
         board.setCell(col, row, currentPlayer);
@@ -118,6 +166,15 @@ public class GameController {
         log.trace(currentPlayer + " circle placed at : (" + row + " - " + col + ")");
     }
 
+    /**
+     * This gets called when a player clicks on row.
+     * If its not full, then the currentPlayer places a cell,
+     * otherwise it throws an alert.
+     *
+     * Checks for {@code BoardModel.isWinning(currentPlayer)} every click.
+     * @param event Event of the mouseClick to get the clicked column from.
+     * @throws IOException as default MouseEvent exception
+     */
     @FXML
     private void handleMouseClick(MouseEvent event) throws IOException {
         int col = getColFromMousePos(event);
@@ -134,6 +191,13 @@ public class GameController {
         }
     }
 
+    /**
+     * Creates {@link GameResult} instance, to get the data to the JPA.
+     * Persists the {@link GameResult} class.
+     * Intantiates a new empty {@link BoardModel} class object, and fills the View according to it.
+     *
+     * @param winner To show the name in the winning screen alert.
+     */
 
     private void doIfPlayerWon(Cell winner) {
         GameResult actualGameResult = getGameResults();

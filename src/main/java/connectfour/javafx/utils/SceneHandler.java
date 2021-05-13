@@ -14,6 +14,10 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This class is responsible for the transitions between JavaFX scenes.
+ */
+
 @Slf4j
 @Data
 public class SceneHandler {
