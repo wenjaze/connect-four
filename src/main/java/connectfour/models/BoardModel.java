@@ -7,18 +7,18 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 public class BoardModel {
 
-    private final int rowNum = 6;
-    private final int colNum = 7;
+    private final int ROWNUM = 6;
+    private final int COLNUM = 7;
     private final double cellSize = 30;
-    private Cell[][] board = new Cell[colNum][rowNum];
+    private Cell[][] board = new Cell[COLNUM][ROWNUM];
 
     public BoardModel() {
         resetBoard();
     }
 
     private void resetBoard() {
-        for (int i = 0; i < colNum; i++) {
-            for (int j = 0; j < rowNum; j++) {
+        for (int i = 0; i < COLNUM; i++) {
+            for (int j = 0; j < ROWNUM; j++) {
                 board[i][j] = Cell.EMPTY;
             }
         }
@@ -35,7 +35,7 @@ public class BoardModel {
     public int getPlacementLocation(int col) {
         int whereToColor = 0;
         boolean found = false;
-        int currentRow = rowNum - 1;
+        int currentRow = ROWNUM - 1;
         while (!found && (currentRow != 0)) {
             if (board[col][currentRow] == Cell.EMPTY) {
                 whereToColor = currentRow;
@@ -55,10 +55,9 @@ public class BoardModel {
         return verticalCheck(player) || horizontalCheck(player) || forwardDiagonalCheck(player) || backwardDiagonalCheck(player);
     }
 
-
     private boolean verticalCheck(Cell player) {
-        for (int i = 0; i < getColNum() - 3; i++) {
-            for (int j = 0; j < this.getRowNum(); j++) {
+        for (int i = 0; i < getCOLNUM() - 3; i++) {
+            for (int j = 0; j < this.getROWNUM(); j++) {
                 if (this.board[i][j] == player && this.board[i + 1][j] == player && this.board[i + 2][j] == player && this.board[i + 3][j] == player) {
                     return true;
                 }
@@ -69,8 +68,8 @@ public class BoardModel {
 
     private boolean horizontalCheck(Cell player) {
         // horizontalCheck
-        for (int j = 0; j < getRowNum() - 3; j++) {
-            for (int i = 0; i < getColNum(); i++) {
+        for (int j = 0; j < getROWNUM() - 3; j++) {
+            for (int i = 0; i < getCOLNUM(); i++) {
                 if (this.board[i][j] == player && this.board[i][j + 1] == player && this.board[i][j + 2] == player && this.board[i][j + 3] == player) {
                     return true;
                 }
@@ -80,8 +79,8 @@ public class BoardModel {
     }
 
     private boolean forwardDiagonalCheck(Cell player) {
-        for (int i = 3; i < getColNum(); i++) {
-            for (int j = 0; j < getRowNum() - 3; j++) {
+        for (int i = 3; i < getCOLNUM(); i++) {
+            for (int j = 0; j < getROWNUM() - 3; j++) {
                 if (this.board[i][j] == player && this.board[i - 1][j + 1] == player && this.board[i - 2][j + 2] == player && this.board[i - 3][j + 3] == player)
                     return true;
             }
@@ -90,8 +89,8 @@ public class BoardModel {
     }
 
     private boolean backwardDiagonalCheck(Cell player) {
-        for (int i = 3; i < getColNum(); i++) {
-            for (int j = 3; j < getRowNum(); j++) {
+        for (int i = 3; i < getCOLNUM(); i++) {
+            for (int j = 3; j < getROWNUM(); j++) {
                 if (this.board[i][j] == player && this.board[i - 1][j - 1] == player && this.board[i - 2][j - 2] == player && this.board[i - 3][j - 3] == player)
                     return true;
             }

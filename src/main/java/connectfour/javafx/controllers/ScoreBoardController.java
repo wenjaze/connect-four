@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.ZonedDateTime;
@@ -24,9 +22,6 @@ import java.util.List;
 
 @Slf4j
 public class ScoreBoardController {
-
-    @Inject
-    FXMLLoader fxmlLoader;
 
     @FXML
     private TableView<GameResult> scoreBoard;
@@ -74,7 +69,7 @@ public class ScoreBoardController {
     }
 
     private void formatDurationValue() {
-        duration.setCellFactory(column -> new TableCell<GameResult, Duration>() {
+        duration.setCellFactory(column -> new TableCell<>() {
 
             @Override
             protected void updateItem(Duration item, boolean empty) {
@@ -89,7 +84,7 @@ public class ScoreBoardController {
     }
 
     private void formatDateValue() {
-        date.setCellFactory(column -> new TableCell<GameResult, ZonedDateTime>() {
+        date.setCellFactory(column -> new TableCell<>() {
             private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss");
 
             @Override

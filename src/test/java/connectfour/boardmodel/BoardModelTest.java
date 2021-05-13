@@ -14,14 +14,14 @@ public class BoardModelTest {
 
     @Test
     void testBoardObjectCreation() {
-        assertEquals(testBoardModel.getRowNum(), 6);
-        assertEquals(testBoardModel.getColNum(), 7);
+        assertEquals(testBoardModel.getROWNUM(), 6);
+        assertEquals(testBoardModel.getCOLNUM(), 7);
     }
 
     @Test
     void testCellColorAfterInitialization() {
-        for (int i = 0; i < testBoardModel.getColNum(); i++) {
-            for (int j = 0; j < testBoardModel.getRowNum(); j++) {
+        for (int i = 0; i < testBoardModel.getCOLNUM(); i++) {
+            for (int j = 0; j < testBoardModel.getROWNUM(); j++) {
                 assertEquals(testBoard[i][j], Cell.EMPTY);
             }
         }
@@ -29,8 +29,8 @@ public class BoardModelTest {
 
     @Test
     void testSetCellFunction() {
-        for (int i = 0; i < testBoardModel.getColNum(); i++) {
-            for (int j = 0; j < testBoardModel.getRowNum(); j++) {
+        for (int i = 0; i < testBoardModel.getCOLNUM(); i++) {
+            for (int j = 0; j < testBoardModel.getROWNUM(); j++) {
                 testBoardModel.setCell(i, j, Cell.RED);
                 assertNotEquals(testBoard[i][j], Cell.EMPTY);
             }

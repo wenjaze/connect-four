@@ -29,6 +29,7 @@ public class StartUpController {
     private String playerName1;
     private String playerName2;
 
+
     @FXML
     public void handleSwitchToGameButton(ActionEvent actionEvent) throws IOException {
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {

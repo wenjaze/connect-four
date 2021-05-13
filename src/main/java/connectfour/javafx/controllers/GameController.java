@@ -51,8 +51,8 @@ public class GameController {
         log.trace("Resetting board...");
         gridPane.getChildren().clear();
         log.trace("Done clearing..");
-        for (int i = 0; i < board.getColNum(); i++) {
-            for (int j = 0; j < board.getRowNum(); j++) {
+        for (int i = 0; i < board.getCOLNUM(); i++) {
+            for (int j = 0; j < board.getROWNUM(); j++) {
                 StackPane cell = addCell(board.getCellFill(i, j));
                 gridPane.add(cell, i, j);
             }
