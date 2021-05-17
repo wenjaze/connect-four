@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardModelTest {
 
-    private final BoardModel testBoardModel = new BoardModel();
+    private BoardModel testBoardModel = new BoardModel();
     private final Cell[][] testBoard = testBoardModel.getBoard();
     private final Cell testCurrentPlayer = Cell.RED;
 
@@ -86,4 +86,24 @@ public class BoardModelTest {
         assertTrue(testBoardModel.isWinning(testCurrentPlayer));
     }
 
+    @Test
+    void testPlacementLocation() {
+        testBoardModel = new BoardModel();
+        testBoardModel.setCell(0, 0, testCurrentPlayer);
+        testBoardModel.setCell(0, 1, testCurrentPlayer);
+        testBoardModel.setCell(0, 2, testCurrentPlayer);
+        testBoardModel.setCell(0, 3, testCurrentPlayer);
+        testBoardModel.setCell(0, 4, testCurrentPlayer);
+
+        assertEquals(testBoardModel.getPlacementLocation(0), 5);
+
+        testBoardModel.setCell(1, 0, testCurrentPlayer);
+        testBoardModel.setCell(1, 1, testCurrentPlayer);
+        testBoardModel.setCell(1, 2, testCurrentPlayer);
+        testBoardModel.setCell(1, 3, testCurrentPlayer);
+        testBoardModel.setCell(1, 4, testCurrentPlayer);
+
+        assertEquals(testBoardModel.getPlacementLocation(1), 5);
+
+    }
 }
